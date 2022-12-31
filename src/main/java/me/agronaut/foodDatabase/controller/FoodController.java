@@ -2,6 +2,7 @@ package me.agronaut.foodDatabase.controller;
 
 import jakarta.validation.Valid;
 import me.agronaut.foodDatabase.model.FoodDto;
+import me.agronaut.foodDatabase.model.OpenFoodDto;
 import me.agronaut.foodDatabase.service.FoodService;
 import me.agronaut.foodDatabase.service.OpenFoodFactsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,13 @@ public class FoodController {
     @Autowired
     OpenFoodFactsService pffSD;
 
-    @PostMapping("/food")
+    @PostMapping("/add-food")
     public ResponseEntity<FoodDto> addFood(@Valid @RequestBody FoodDto food) {
         return new ResponseEntity<FoodDto>(foodSD.save(food), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-food/{code}")
-    public ResponseEntity<FoodDto> getFood(@PathVariable String code) {
-        return new ResponseEntity<FoodDto>(pffSD.getByCode(code), HttpStatus.FOUND);
+    public ResponseEntity<OpenFoodDto> getFood(@PathVariable String code) {
+        return new ResponseEntity<>(pffSD.getByCode(code), HttpStatus.OK);
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import pl.coderion.service.OpenFoodFactsWrapper;
+import pl.coderion.service.impl.OpenFoodFactsWrapperImpl;
 
 @SpringBootApplication
 @EnableMongoRepositories
@@ -14,6 +16,10 @@ public class FoodDatabaseApplication {
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
+	}
+	@Bean
+	public OpenFoodFactsWrapper openFoodFactsWrapper() {
+		return new OpenFoodFactsWrapperImpl();
 	}
 
 	public static void main(String[] args) {
