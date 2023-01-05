@@ -1,7 +1,10 @@
 package me.agronaut.foodDatabase.service;
 
+import me.agronaut.foodDatabase.model.FoodDto;
 import me.agronaut.foodDatabase.model.OpenFoodDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 import pl.coderion.model.Product;
 import pl.coderion.service.OpenFoodFactsWrapper;
