@@ -3,6 +3,7 @@ package me.agronaut.foodDatabase.controller;
 import jakarta.validation.Valid;
 import me.agronaut.foodDatabase.model.FoodDto;
 import me.agronaut.foodDatabase.model.OpenFoodDto;
+import me.agronaut.foodDatabase.model.StorageDto;
 import me.agronaut.foodDatabase.service.FoodService;
 import me.agronaut.foodDatabase.service.OpenFoodFactsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class FoodController {
     }
 
     @GetMapping("/get-all")
-    public Page<FoodDto> getAllByUser(Pageable pageable) {
+    public Page<StorageDto> getAllByUser(Pageable pageable) {
         return foodSD.getAllFood(pageable);
     }
 }
