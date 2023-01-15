@@ -23,7 +23,7 @@ public class FoodController {
 
     @PostMapping("/add-food")
     public ResponseEntity<FoodDto> addFood(@Valid @RequestBody FoodDto food) {
-        return new ResponseEntity<FoodDto>(foodSD.save(food), HttpStatus.CREATED);
+        return new ResponseEntity<>(foodSD.save(food), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-food/{code}")
