@@ -22,4 +22,4 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-cp", "app:app/lib/*", "me.agronaut.foodDatabase.FoodDatabaseApplication"]
+ENTRYPOINT ["java", "-jar", "/app/target/*.jar"]
