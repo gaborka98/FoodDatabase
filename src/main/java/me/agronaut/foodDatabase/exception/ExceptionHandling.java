@@ -22,7 +22,7 @@ public class ExceptionHandling extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         ApiError error = new ApiError(ex.getBindingResult().getFieldErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).toList(), LocalDateTime.now(), HttpStatus.BAD_REQUEST,
-                "You have invalid data. Please read error messages for more details");
+                                      "You have invalid data. Please read error messages for more details");
 
         return handleExceptionInternal(ex, error, new HttpHeaders(), error.getStatus(), request);
     }
