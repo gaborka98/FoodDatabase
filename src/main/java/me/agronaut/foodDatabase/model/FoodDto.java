@@ -3,6 +3,7 @@ package me.agronaut.foodDatabase.model;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.bson.types.Binary;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
@@ -22,4 +23,5 @@ public class FoodDto {
 
     private String[] allergens;
     private String[] ingredients;
+    private Binary photo;
 }
