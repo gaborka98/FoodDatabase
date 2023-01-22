@@ -5,6 +5,7 @@ import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderion.model.Product;
+import pl.coderion.model.ProductResponse;
 import pl.coderion.service.OpenFoodFactsWrapper;
 
 import javax.imageio.ImageIO;
@@ -23,18 +24,21 @@ public class OpenFoodFactsService {
     }
 
     public OpenFoodDto getByCode(String code) {
-        Product response = wrapper.fetchProductByCode(code).getProduct();
+        ProductResponse response = wrapper.fetchProductByCode(code);
 
+        if (response != null) {
+            Product product = response.getProduct();
 
-
-        OpenFoodDto res = new OpenFoodDto();
-        res.setAllergens(response.getAllergensTags());
-        res.setIngredients(response.getIngredientsText());
-        res.setName(response.getProductName());
-        res.setBarcode(response.getCode());
-        res.setQuantity(Integer.parseInt(response.getProductQuantity()));
-        res.setPhoto(downloadImage(response.getImageThumbUrl()));
-        return res;
+            OpenFoodDto res = new OpenFoodDto();
+            res.setAllergens(product.getAllergensTags());
+            res.setIngredients(product.getIngredientsText());
+            res.setName(product.getProductName());
+            res.setBarcode(product.getCode());
+            res.setQuantity(Integer.parseInt(product.getProductQuantity()));
+            res.setPhoto(downloadImage(product.getImageThumbUrl()));
+            return res;
+        }
+        return null;
     }
 
     private Binary downloadImage(String imageUrl) {

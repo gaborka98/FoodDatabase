@@ -1,6 +1,6 @@
 package me.agronaut.foodDatabase;
 
-import me.agronaut.foodDatabase.model.FoodDto;
+import me.agronaut.foodDatabase.model.OpenFoodDto;
 import me.agronaut.foodDatabase.model.StorageDto;
 import me.agronaut.foodDatabase.service.FoodService;
 import me.agronaut.foodDatabase.service.OpenFoodFactsService;
@@ -28,6 +28,10 @@ class FoodServiceTest {
 
     @Test
     void testGetFoodByBarcode(){
-        System.out.println(service2.getByCode("7622300291785"));
+        OpenFoodDto food = service2.getByCode("7622300291785");
+
+        System.out.println(food);
+
+        Assertions.assertNotNull(food);
     }
 }
