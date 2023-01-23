@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 public class OpenFoodDto {
     String barcode;
     String name;
-    String ingredients;
+    String[] ingredients;
     Integer quantity;
     String[] allergens;
     Binary photo;

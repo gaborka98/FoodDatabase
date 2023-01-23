@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 
 @Service
 public class OpenFoodFactsService {
@@ -30,8 +31,8 @@ public class OpenFoodFactsService {
             Product product = response.getProduct();
 
             OpenFoodDto res = new OpenFoodDto();
-            res.setAllergens(product.getAllergensTags());
-            res.setIngredients(product.getIngredientsText());
+            res.setAllergens(Arrays.stream(product.getAllergensTags()).map(iter -> iter.split(":")[1]).toArray(String[]::new));
+            res.setIngredients(product.getIngredientsText().replace(", ", ",").split(","));
             res.setName(product.getProductName());
             res.setBarcode(product.getCode());
             res.setQuantity(Integer.parseInt(product.getProductQuantity()));
