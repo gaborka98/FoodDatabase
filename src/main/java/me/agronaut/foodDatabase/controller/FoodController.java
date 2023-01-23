@@ -8,13 +8,16 @@ import me.agronaut.foodDatabase.service.FoodService;
 import me.agronaut.foodDatabase.service.OpenFoodFactsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
 
-@RestController
+
+@RestController("/")
 public class FoodController {
     @Autowired
     FoodService foodSD;
@@ -32,7 +35,7 @@ public class FoodController {
     }
 
     @GetMapping("/get-all")
-    public Page<StorageDto> getAllByUser(Pageable pageable) {
-        return foodSD.getAllFood(pageable);
+    public Page<StorageDto> getAllByUser(@RequestParam(required = false)Pageable pageable) {
+        return foodSD.getAllFood(Objects.requireNonNullElseGet(pageable, () -> PageRequest.of(0, 10)));
     }
 }
