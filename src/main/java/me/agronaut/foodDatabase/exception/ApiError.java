@@ -1,4 +1,4 @@
-package me.agronaut.foodDatabase.exception;
+package me.agronaut.fooddatabase.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package me.agronaut.foodDatabase.model;
+package me.agronaut.fooddatabase.model;
 
 import lombok.Data;
 import org.bson.types.Binary;

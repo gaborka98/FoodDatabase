@@ -1,11 +1,11 @@
-package me.agronaut.foodDatabase.controller;
+package me.agronaut.fooddatabase.controller;
 
 import jakarta.validation.Valid;
-import me.agronaut.foodDatabase.model.FoodDto;
-import me.agronaut.foodDatabase.model.OpenFoodDto;
-import me.agronaut.foodDatabase.model.StorageDto;
-import me.agronaut.foodDatabase.service.FoodService;
-import me.agronaut.foodDatabase.service.OpenFoodFactsService;
+import me.agronaut.fooddatabase.model.FoodDto;
+import me.agronaut.fooddatabase.model.OpenFoodDto;
+import me.agronaut.fooddatabase.model.StorageDto;
+import me.agronaut.fooddatabase.service.FoodService;
+import me.agronaut.fooddatabase.service.OpenFoodFactsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

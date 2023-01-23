@@ -1,7 +1,5 @@
-package me.agronaut.foodDatabase.exception;
+package me.agronaut.fooddatabase.exception;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,9 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-
 import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ExceptionHandling extends ResponseEntityExceptionHandler {

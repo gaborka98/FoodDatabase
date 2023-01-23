@@ -1,9 +1,9 @@
-package me.agronaut.foodDatabase.service;
+package me.agronaut.fooddatabase.service;
 
-import me.agronaut.foodDatabase.model.Food;
-import me.agronaut.foodDatabase.model.FoodDto;
-import me.agronaut.foodDatabase.model.StorageDto;
-import me.agronaut.foodDatabase.repository.FoodRepository;
+import me.agronaut.fooddatabase.model.Food;
+import me.agronaut.fooddatabase.model.FoodDto;
+import me.agronaut.fooddatabase.model.StorageDto;
+import me.agronaut.fooddatabase.repository.FoodRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

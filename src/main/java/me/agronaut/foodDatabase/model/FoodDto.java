@@ -1,12 +1,11 @@
-package me.agronaut.foodDatabase.model;
+package me.agronaut.fooddatabase.model;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.bson.types.Binary;
 import org.springframework.validation.annotation.Validated;
-
-import java.util.ArrayList;
 
 
 @Data

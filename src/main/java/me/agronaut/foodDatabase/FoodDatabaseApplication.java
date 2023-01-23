@@ -1,4 +1,4 @@
-package me.agronaut.foodDatabase;
+package me.agronaut.fooddatabase;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

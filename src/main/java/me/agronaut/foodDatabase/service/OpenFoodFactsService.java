@@ -1,6 +1,6 @@
-package me.agronaut.foodDatabase.service;
+package me.agronaut.fooddatabase.service;
 
-import me.agronaut.foodDatabase.model.OpenFoodDto;
+import me.agronaut.fooddatabase.model.OpenFoodDto;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
