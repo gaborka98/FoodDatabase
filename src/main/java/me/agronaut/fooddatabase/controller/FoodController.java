@@ -34,6 +34,11 @@ public class FoodController {
         return new ResponseEntity<>(pffSD.getByCode(code), HttpStatus.OK);
     }
 
+    @DeleteMapping
+    public void deleteFood(FoodDto food) {
+        foodSD.deleteFood(food);
+    }
+
     @GetMapping("/get-all")
     public Page<StorageDto> getAllByUser(@RequestParam(required = false)Pageable pageable) {
         return foodSD.getAllFood(Objects.requireNonNullElseGet(pageable, () -> PageRequest.of(0, 10)));

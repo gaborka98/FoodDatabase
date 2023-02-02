@@ -46,4 +46,9 @@ public class FoodService {
 
         return new PageImpl<>(res.getMappedResults(), pageable, res.getMappedResults().size());
     }
+
+    public void deleteFood(FoodDto food) {
+        Food casted = modelMapper.map(food, Food.class);
+        foodRepository.delete(casted);
+    }
 }
