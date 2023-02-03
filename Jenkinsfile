@@ -16,7 +16,7 @@ pipeline {
     stage('SonarQube scan') {
         steps {
             withSonarQubeEnv('sonarQube'){
-                sh "mvn -B --file pom.xml -Dmaven.test.skip=true clean verify sonar:sonar"
+                sh "mvn -B --file pom.xml -Dmaven.test.skip=true clean verify sonar:sonar -Dsonar.login=$SONAR_SECRET"
             }
             timeout(time: 5, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
@@ -31,14 +31,16 @@ pipeline {
     }
 
     stage('Build image') {
-       dockerImage = docker.build("gaborka98/food_app:latest")
+        steps{
+            dockerImage = docker.build("gaborka98/food_app:latest")
+        }
     }
     stage('Push image') {
         withDockerRegistry([ credentialsId: "9f06dc5f-9e91-4623-9567-4d7cd5666417", url: "http://registry.docker.io" ]) {
             dockerImage.push()
         }
     }
-  }
+}
   tools {
     maven 'M3'
     jdk 'JDK17'
