@@ -50,6 +50,7 @@ pipeline {
   tools {
     maven 'M3'
     jdk 'JDK17'
+    docker 'docker'
   }
   post {
     success {
