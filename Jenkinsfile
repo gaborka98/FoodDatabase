@@ -38,8 +38,10 @@ pipeline {
         }
     }
     stage('Push image') {
-        withDockerRegistry([ credentialsId: "9f06dc5f-9e91-4623-9567-4d7cd5666417", url: "http://registry.docker.io" ]) {
-            dockerImage.push()
+        steps {
+            withDockerRegistry([ credentialsId: "9f06dc5f-9e91-4623-9567-4d7cd5666417", url: "http://registry.docker.io" ]) {
+                dockerImage.push()
+            }
         }
     }
 }
