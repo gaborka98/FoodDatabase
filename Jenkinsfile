@@ -15,7 +15,9 @@ pipeline {
 
     stage('SonarQube scan') {
         steps {
-            sh "mvn -B --file pom.xml -Dmaven.test.skip=true clean verify sonar:sonar"
+            withSonarQubeEnv('sonarQube'){
+                sh "mvn -B --file pom.xml -Dmaven.test.skip=true clean verify sonar:sonar"
+            }
             timeout(time: 1, unit: 'HOURS') {
                 waitForQualityGate abortPipeline: true
               }
