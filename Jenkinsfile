@@ -32,7 +32,9 @@ pipeline {
 
     stage('Build image') {
         steps{
-            dockerImage = docker.build("gaborka98/food_app:latest")
+            script{
+                dockerImage = docker.build("gaborka98/food_app:latest")
+            }
         }
     }
     stage('Push image') {
