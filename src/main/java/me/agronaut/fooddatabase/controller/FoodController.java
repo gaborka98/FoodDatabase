@@ -34,9 +34,9 @@ public class FoodController {
         return new ResponseEntity<>(pffSD.getByCode(code), HttpStatus.OK);
     }
 
-    @DeleteMapping
-    public void deleteFood(FoodDto food) {
-        foodSD.deleteFood(food);
+    @DeleteMapping("delete/{id}")
+    public void deleteFood(@PathVariable String id) {
+        foodSD.deleteFood(id);
     }
 
     @GetMapping("/get-all")
