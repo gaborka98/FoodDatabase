@@ -46,6 +46,16 @@ pipeline {
             }
         }
     }
+
+    stage('Deploy') {
+        steps {
+            script {
+                sh "docker container stop food-app"
+                sh "docker container rm food-app"
+                sh "docker run -d --restart unless-stopped -p 8094:8080 --name food-app gaborka98/food_app:latest"
+            }
+        }
+    }
 }
   tools {
     maven 'M3'
