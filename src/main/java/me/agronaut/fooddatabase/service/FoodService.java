@@ -50,4 +50,8 @@ public class FoodService {
     public void deleteFood(String id) {
         foodRepository.deleteById(id);
     }
+
+    public void deleteAll(String barcode) {
+        foodRepository.deleteAllByBarcode(barcode);
+    }
 }

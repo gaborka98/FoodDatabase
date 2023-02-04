@@ -39,6 +39,11 @@ public class FoodController {
         foodSD.deleteFood(id);
     }
 
+    @DeleteMapping("delete-all/{barcode}")
+    public void deleteAll(@PathVariable String barcode) {
+        foodSD.deleteAll(barcode);
+    }
+
     @GetMapping("/get-all")
     public Page<StorageDto> getAllByUser(@RequestParam(required = false)Pageable pageable) {
         return foodSD.getAllFood(Objects.requireNonNullElseGet(pageable, () -> PageRequest.of(0, 10)));
