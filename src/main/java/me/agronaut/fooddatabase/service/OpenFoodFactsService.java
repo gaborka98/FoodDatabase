@@ -1,7 +1,6 @@
 package me.agronaut.fooddatabase.service;
 
 import me.agronaut.fooddatabase.model.OpenFoodDto;
-import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderion.model.Product;
@@ -31,8 +30,8 @@ public class OpenFoodFactsService {
             Product product = response.getProduct();
 
             OpenFoodDto res = new OpenFoodDto();
-            res.setAllergens(Arrays.stream(product.getAllergensTags()).map(iter -> iter.split(":")[1]).toArray(String[]::new));
-            res.setIngredients(product.getIngredientsText().replace(", ", ",").split(","));
+            res.setAllergens(product.getAllergensTags() != null ? Arrays.stream(product.getAllergensTags()).map(iter -> iter.split(":")[1]).toArray(String[]::new) : new String[0]);
+            res.setIngredients(product.getIngredientsText() != null ? product.getIngredientsText().replace(", ", ",").split(",") : new String[0]);
             res.setName(product.getProductName());
             res.setBarcode(product.getCode());
             res.setQuantity(Integer.parseInt(product.getProductQuantity()));
@@ -42,19 +41,18 @@ public class OpenFoodFactsService {
         return null;
     }
 
-    private Binary downloadImage(String imageUrl) {
+    private byte[] downloadImage(String imageUrl) {
         try {
             URL url = new URL(imageUrl);
             BufferedImage image = ImageIO.read(url);
 
-            return new Binary(toByteArray(image, "jpg"));
+            return toByteArray(image, "jpg");
         } catch (IOException e) {
             return null;
         }
     }
 
-    public static byte[] toByteArray(BufferedImage bi, String format)
-        throws IOException {
+    public static byte[] toByteArray(BufferedImage bi, String format) throws IOException {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bi, format, baos);

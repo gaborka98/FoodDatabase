@@ -1,9 +1,9 @@
 package me.agronaut.fooddatabase.service;
 
 import me.agronaut.fooddatabase.model.Food;
-import me.agronaut.fooddatabase.model.FoodDto;
 import me.agronaut.fooddatabase.model.StorageDto;
 import me.agronaut.fooddatabase.repository.FoodRepository;
+import me.agronaut.fooddatabase.model.FoodDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,7 +36,7 @@ public class FoodService {
 
     public Page<StorageDto> getAllFood(Pageable pageable) {
         Aggregation agg = Aggregation.newAggregation(
-                project("totalCount", "barcode", "quantity", "name", "allergens", "ingredients"),
+                project("totalCount", "barcode", "quantity", "name", "allergens", "ingredients", "photo"),
                 group("barcode")
                         .sum("quantity").as("totalCount")
                         .count().as("count")

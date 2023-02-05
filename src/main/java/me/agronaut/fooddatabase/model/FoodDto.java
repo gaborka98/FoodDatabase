@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.Binary;
 import org.springframework.validation.annotation.Validated;
 
 
@@ -22,5 +21,5 @@ public class FoodDto {
 
     private String[] allergens;
     private String[] ingredients;
-    private Binary photo;
+    private byte[] photo;
 }
