@@ -59,7 +59,6 @@ pipeline {
 }
   tools {
     maven 'M3'
-    jdk 'JDK17'
   }
   post {
     success {
