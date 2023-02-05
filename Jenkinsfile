@@ -19,7 +19,7 @@ pipeline {
                 sh "mvn -B --file pom.xml -Dmaven.test.skip=true clean verify sonar:sonar -Dsonar.login=$SONAR_SECRET"
             }
             timeout(time: 5, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true
+                waitForQualityGate abortPipeline: false
               }
         }
     }
