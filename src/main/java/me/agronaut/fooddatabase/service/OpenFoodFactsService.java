@@ -1,6 +1,6 @@
 package me.agronaut.fooddatabase.service;
 
-import me.agronaut.fooddatabase.model.OpenFoodDto;
+import me.agronaut.fooddatabase.model.FoodDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderion.model.Product;
@@ -23,13 +23,13 @@ public class OpenFoodFactsService {
         this.wrapper = wrapper;
     }
 
-    public OpenFoodDto getByCode(String code) {
+    public FoodDto getByCode(String code) {
         ProductResponse response = wrapper.fetchProductByCode(code);
 
         if (response != null) {
             Product product = response.getProduct();
 
-            OpenFoodDto res = new OpenFoodDto();
+            FoodDto res = new FoodDto();
             res.setAllergens(product.getAllergensTags() != null ? Arrays.stream(product.getAllergensTags()).map(iter -> iter.split(":")[1]).toArray(String[]::new) : new String[0]);
             res.setIngredients(product.getIngredientsText() != null ? product.getIngredientsText().replace(", ", ",").split(",") : new String[0]);
             res.setName(product.getProductName());
@@ -48,7 +48,7 @@ public class OpenFoodFactsService {
 
             return toByteArray(image, "jpg");
         } catch (IOException e) {
-            return null;
+            return new byte[0];
         }
     }
 

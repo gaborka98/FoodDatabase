@@ -2,7 +2,6 @@ package me.agronaut.fooddatabase.controller;
 
 import jakarta.validation.Valid;
 import me.agronaut.fooddatabase.model.FoodDto;
-import me.agronaut.fooddatabase.model.OpenFoodDto;
 import me.agronaut.fooddatabase.model.StorageDto;
 import me.agronaut.fooddatabase.service.FoodService;
 import me.agronaut.fooddatabase.service.OpenFoodFactsService;
@@ -30,7 +29,7 @@ public class FoodController {
     }
 
     @GetMapping("/get-food/{code}")
-    public ResponseEntity<OpenFoodDto> getFood(@PathVariable String code) {
+    public ResponseEntity<FoodDto> getFood(@PathVariable String code) {
         return new ResponseEntity<>(pffSD.getByCode(code), HttpStatus.OK);
     }
 
