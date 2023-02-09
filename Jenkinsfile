@@ -25,7 +25,7 @@ pipeline {
                     }
                 },
                 'Unit tests': {
-                    sh "mvn -B --file pom.xml test"
+                    sh "mvn -B --file pom.xml clean verify test"
                 }
             )
         }
