@@ -13,7 +13,7 @@ pipeline {
       }
     }
 
-    stage('Build and testing') {
+    stage('Test') {
         steps {
             parallel(
                 'SonarQube scan': {
