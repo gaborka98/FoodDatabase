@@ -7,28 +7,49 @@ pipeline {
       }
     }
 
-    stage('Maven Build') {
-      steps {
-        sh 'mvn -Dmaven.test.skip=true clean package'
-      }
-    }
-
-    stage('SonarQube scan') {
+    stage('Build and testing') {
         steps {
-            withSonarQubeEnv('sonarQube'){
-                sh "mvn -B --file pom.xml -Dmaven.test.skip=true clean verify sonar:sonar -Dsonar.login=$SONAR_SECRET"
-            }
-            timeout(time: 5, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: false
-              }
+            parallel(
+                'Maven build': {
+                    sh 'mvn -Dmaven.test.skip=true clean package'
+                },
+                'SonarQube scan': {
+                    withSonarQubeEnv('sonarQube'){
+                                    sh "mvn -B --file pom.xml -Dmaven.test.skip=true clean verify sonar:sonar -Dsonar.login=$SONAR_SECRET"
+                    }
+                    timeout(time: 5, unit: 'MINUTES') {
+                        waitForQualityGate abortPipeline: false
+                    }
+                },
+                'Unit tests': {
+                    sh "mvn -B --file pom.xml test"
+                }
+            )
         }
     }
-
-    stage('Maven Test') {
-        steps {
-            sh "mvn -B --file pom.xml test"
-        }
-    }
+//
+//     stage('Maven Build') {
+//       steps {
+//         sh 'mvn -Dmaven.test.skip=true clean package'
+//       }
+//     }
+//
+//     stage('SonarQube scan') {
+//         steps {
+//             withSonarQubeEnv('sonarQube'){
+//                 sh "mvn -B --file pom.xml -Dmaven.test.skip=true clean verify sonar:sonar -Dsonar.login=$SONAR_SECRET"
+//             }
+//             timeout(time: 5, unit: 'MINUTES') {
+//                 waitForQualityGate abortPipeline: false
+//               }
+//         }
+//     }
+//
+//     stage('Maven Test') {
+//         steps {
+//             sh "mvn -B --file pom.xml test"
+//         }
+//     }
 
     stage('Build image') {
         steps{
