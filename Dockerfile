@@ -14,4 +14,4 @@ COPY --from=build /app/target/*.jar /app/app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java","-XX:+UseSerialGC", "-XX:MaxRAM=72m", "-Xss512k", "-jar", "/app/app.jar"]
