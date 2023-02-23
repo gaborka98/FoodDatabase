@@ -2,8 +2,6 @@ package me.agronaut.fooddatabase.model;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -11,9 +9,7 @@ import org.springframework.validation.annotation.Validated;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Validated
-@Builder
 public class FoodDto {
     private String id;
     @NotNull(message = "Name is required")
