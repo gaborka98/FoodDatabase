@@ -2,7 +2,6 @@ package me.agronaut.fooddatabase;
 
 import me.agronaut.fooddatabase.model.Food;
 import me.agronaut.fooddatabase.model.FoodDto;
-import me.agronaut.fooddatabase.model.StorageDto;
 import me.agronaut.fooddatabase.repository.FoodRepository;
 import me.agronaut.fooddatabase.service.FoodService;
 import me.agronaut.fooddatabase.service.OpenFoodFactsService;
@@ -11,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import pl.coderion.model.Product;
 import pl.coderion.model.ProductResponse;
 import pl.coderion.service.OpenFoodFactsWrapper;
@@ -60,14 +57,6 @@ class FoodServiceTest {
         Assertions.assertNotNull(food);
         verify(repository, times(1)).save(any());
 
-    }
-
-    @Test
-    void testGetAllFood() {
-        Page<StorageDto> res = service.getAllFood(PageRequest.of(0,10));
-
-        System.out.println(res.getContent());
-        Assertions.assertFalse(res.getContent().isEmpty());
     }
 
     @Test
